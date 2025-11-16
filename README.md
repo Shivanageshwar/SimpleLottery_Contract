@@ -1,26 +1,39 @@
-# 🎰 Lottery Smart Contract (Solidity)
+# Lottery Smart Contract (Solidity)
 
-A simple blockchain-based lottery system where users enter by sending ETH, and the owner selects a random winner. Built in **Solidity 0.8.x**.
-
-This is an educational contract (not suitable for production) because randomness is not secure on-chain.
-
----
-
-## 🚀 Features
-
-- 🎟 Enter lottery by sending ETH  
-- 🎲 Random winner selection (pseudo-random)  
-- 🧑‍⚖️ Only owner can trigger winner selection  
-- 💰 All ETH collected is transferred to the winner  
-- 📡 Emits events for transparency  
-- 🔁 Automatically resets for next round  
+This is a simple lottery (raffle) smart contract written in Solidity 0.8.x.  
+Users can enter the lottery by sending Ether, and the contract owner can pick a random winner.  
+This contract is intended for learning purposes only and is not suitable for production use due to insecure randomness.
 
 ---
 
-## ⚙ How It Works
+## Features
 
-### 1️⃣ **Enter the Lottery**
-Users join by calling:
+- Users enter the lottery by sending ETH.
+- Owner selects a winner from the list of participants.
+- The winner receives the entire contract balance.
+- Events emitted for transparency.
+- Contract resets after each round.
 
-```solidity
-enterRaffle() payable
+---
+
+## How It Works
+
+### Enter the Lottery
+Users call:
+
+Requirements:
+- Must send a non-zero amount of ETH.
+- User is added to the players list.
+- Enter event is emitted.
+
+### Pick Winner (Owner Only)
+Owner calls:
+
+The process:
+1. Generates a pseudo-random number.
+2. Selects a winner from the players array.
+3. Sends the full balance to the winner.
+4. Emits the Winner event.
+5. Resets the players array and balance.
+
+---
